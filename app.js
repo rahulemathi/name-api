@@ -26,7 +26,7 @@ const College = mongoose.model("College", collegeSchema);
 /////////////////////////////////////////////////request targetting all the articles ///////////////
 
 app
-  .route("/colleges")
+  .route("/")
   .get(function (req, res) {
     College.find(function (err, foundCollege) {
       if (!err) {
