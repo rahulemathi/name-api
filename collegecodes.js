@@ -1,4 +1,4 @@
-[
+const vtuColleges = [
  {
   "id": 1,
   "VTU college Name": "A.P.S COLLEGE OF ENGINEERING.",

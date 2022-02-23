@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const app = express();
+const vtucc = require("./collegecodes");
 
 
 app.set("views", ejs);
@@ -61,20 +62,31 @@ app
 
 /////////////////////////////////////////////////request targetting spectific the articles ///////////////
 
-// app
-//   .route("/articles/:articleTitle")
-//   .get(function (req, res) {
-//     Article.findOne(
-//       { title: req.params.articleTitle },
-//       function (err, foundArticle) {
-//         if (foundArticle) {
-//           res.send(foundArticle);
-//         } else {
-//           res.send("No article match found");
-//         }
-//       }
-//     );
-//   })
+app
+  .route("/colleges/:collegecode")
+  .get(function (req, res) {
+    College.findOne(
+      { collegeCode: req.params.collegecode },
+      function (err, foundCollegeCode) {
+        if (foundCollegeCode) {
+          res.send(foundCollegeCode);
+        } else {
+          res.send("No College Code Found");
+        }
+      }
+    );
+  })
+
+  // .get("/colleges/:collegename", function (req, res) {
+  //   College.findOne({ collegeName: req.params.collegename },
+  //     function (err, foundCollegeName) {
+  //       if (foundCollegeName) {
+  //         res.send(foundCollegeName);
+  //       } else {
+  //         res.send("No College Name Found");
+  //       }
+  //     });
+  // })
 
 //   .put(function (req, res) {
 //     Article.replaceOne(
@@ -119,12 +131,11 @@ app
 
 
 let port = process.env.PORT;
-if(port == null || port == ""){
+if (port == null || port == "") {
   port = 3000
 }
 
 
 app.listen(port, function () {
-    console.log("app started in local host 3000");
-  });
-  
+  console.log("app started in local host 3000");
+});
